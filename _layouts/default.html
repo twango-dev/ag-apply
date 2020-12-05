@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+        <!-- Use Local For Now
+        <link rel="stylesheet" href="https://apply.agentgaming.gg/assets/styles.css">
+        -->
+        <link rel="stylesheet" href="../assets/styles.css">
 
     </head>
     <body>
-
+        <nav>
+            <a href="https://apply.agentgaming.gg/"><img src="../assets/logo.svg"></a>
+            <a class="link" href="https://agentgaming.gg/">Home</a>
+            <a class="link" href="https://apply.agentgaming.gg/">Apply</a>
+            <a id="return" href="https://agentgaming.gg/">Return to Home</a>
+        </nav>
+        <div id="defaultContent">
+            {{ content }}
+        </div>
     </body>
 </html>
