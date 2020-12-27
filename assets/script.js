@@ -8,7 +8,8 @@ var socialMap = {
     "social-twitter": false,
     "social-instagram": false,
     "social-youtube": false,
-    "social-twitch": false
+    "social-twitch": false,
+    "social-merch": true
 }
 
 window.onload = function onLoad() {
@@ -49,15 +50,29 @@ function validSK(SK, regen = false, checkJSON = false) {
         const request = new XMLHttpRequest()
         request.open("GET", binURL, true)
         request.onreadystatechange = () => {
-            console.log(request.responseText)
+            const responseObject = JSON.parse(request.responseText)
+            var allSK = []
+
+            for (let i = 0; i < responseObject.validSessionKeys.length; i++) {
+                const foundSK = responseObject.validSessionKeys[i]
+                allSK.push(foundSK)
+            }
+
+            if (!allSK.includes(sessionKey)) {
+                invalidKey()
+            }
         }
         request.send()
     }
 
     function invalidKey() {
         console.error(`Invalid SK: ${SK}`)
-        if (regen) { generateSK() }
-        window.location.href = baseURL + `?sessionKey=${sessionKey}`
+        document.getElementById("invalidSKERROR").style.display = "block" 
+        if (regen) { 
+            generateSK()
+            window.location.href = baseURL + `?sessionKey=${sessionKey}`
+        }
+        
         return false
     }
 
@@ -70,10 +85,7 @@ function generateSK() {
 }
 
 function onSubmit() {
-    if (validSK(sessionKey, false, true)) {
-        //window.location.href = applyURL + `?token=${sessionKey}`
-    } else {
-        document.getElementById("invalidSKERROR").style.display = "block" 
+    if (validSK(sessionKey, false, false)) {
+        window.location.href = applyURL + `?token=${sessionKey}`
     }
-    
 }
