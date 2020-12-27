@@ -1,6 +1,7 @@
 const baseURL = "https://apply.agentgaming.gg"
 const binURL = "https://json.extendsclass.com/bin/e383323c07c1"
 const applyURL = "https://agentgaming.gg/apply"
+
 var sessionKey = ""
 
 var socialMap = {
@@ -35,15 +36,23 @@ window.onload = function onLoad() {
             if (!socialMap[i]) { allowedContinuation = false }
         }
         if (allowedContinuation) {
-            window.location.href = applyURL + `?token=${sessionKey}`
+            onSubmit()
         } else {
-            document.getElementById("err").style.display = "block"
+            document.getElementById("noSocialERROR").style.display = "block"
         }
     }
 }
 
 function validSK(SK, regen = false, checkJSON = false) {
     if (SK.length != 22) { invalidKey() }
+    if (checkJSON) {
+        const request = new XMLHttpRequest()
+        request.open("GET", binURL, true)
+        request.onreadystatechange = () => {
+            console.log(request.responseText)
+        }
+        request.send()
+    }
 
     function invalidKey() {
         console.error(`Invalid SK: ${SK}`)
@@ -61,5 +70,10 @@ function generateSK() {
 }
 
 function onSubmit() {
-
+    if (validSK(sessionKey, false, true)) {
+        //window.location.href = applyURL + `?token=${sessionKey}`
+    } else {
+        document.getElementById("invalidSKERROR").style.display = "block" 
+    }
+    
 }

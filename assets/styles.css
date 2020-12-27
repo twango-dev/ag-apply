@@ -165,7 +165,7 @@ footer .column h1 {
     color: #6441A5;
 }
 
-#err {
+.error {
     display: none;
     margin-top: 40px;
     font-weight: bold;
