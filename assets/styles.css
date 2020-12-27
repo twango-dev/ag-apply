@@ -165,6 +165,10 @@ footer .column h1 {
     color: #6441A5;
 }
 
+.fa-shopping-cart:hover {
+    color: rgb(70, 70, 70)
+}
+
 .error {
     display: none;
     margin-top: 40px;
