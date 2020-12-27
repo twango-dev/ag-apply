@@ -1,6 +1,6 @@
 const baseURL = "https://apply.agentgaming.gg"
 const binURL = "https://json.extendsclass.com/bin/e383323c07c1"
-const applyURL = "https://agentgaming.gg/apply"
+const applyURL = "https://apply.agentgaming.gg/2"
 
 var sessionKey = ""
 
